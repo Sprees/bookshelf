@@ -3,7 +3,7 @@ import {jsx} from '@emotion/core'
 import '@reach/dialog/styles.css'
 import * as React from 'react'
 import {createRoot} from 'react-dom/client'
-import {Button, Input, FormGroup} from './components/lib'
+import {Button, Input, FormGroup, Spinner} from './components/lib'
 import {Modal, ModalContents, ModalOpenButton} from './components/modal'
 import {Logo} from './components/logo'
 
@@ -42,6 +42,7 @@ function LoginForm({onSubmit, submitButton}) {
       </FormGroup>
       <FormGroup>
         {React.cloneElement(submitButton, {type: 'submit'})}
+        <Spinner css={{marginLeft: 5}} />
       </FormGroup>
     </form>
   )
