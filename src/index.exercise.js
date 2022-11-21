@@ -6,8 +6,38 @@ import {Dialog} from '@reach/dialog'
 
 import {Logo} from './components/logo'
 
+const LoginForm = ({onSubmit, buttonText}) => {
+  const handleSubmit = e => {
+    e.preventDefault()
+    const {username, password} = e.target.elements
+
+    onSubmit({
+      username: username.value,
+      password: password.value,
+    })
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <input id="username" type="text" />
+      </div>
+      <div>
+        <input id="password" type="password" />
+      </div>
+      <div>
+        <button>{buttonText}</button>
+      </div>
+    </form>
+  )
+}
+
 const App = () => {
   const [openModal, setOpenModal] = React.useState('none')
+
+  const handleSubmit = formData => {
+    console.log('Form Data: ', formData)
+  }
 
   return (
     <div>
@@ -16,16 +46,20 @@ const App = () => {
       <button onClick={() => setOpenModal('register')}>Register</button>
 
       {openModal === 'login' && (
-        <Dialog>
-          <p>This is the Login Modal</p>
-          <button onClick={() => setOpenModal('none')}>Close</button>
+        <Dialog aria-label="Login Form">
+          <LoginForm onSubmit={handleSubmit} buttonText="Login" />
+          <div>
+            <button onClick={() => setOpenModal('none')}>Close</button>
+          </div>
         </Dialog>
       )}
 
       {openModal === 'register' && (
-        <Dialog>
-          <p>This is the Register Modal</p>
-          <button onClick={() => setOpenModal('none')}>Close</button>
+        <Dialog aria-label="Registeration Form">
+          <LoginForm onSubmit={handleSubmit} buttonText="Login" />
+          <div>
+            <button onClick={() => setOpenModal('none')}>Close</button>
+          </div>
         </Dialog>
       )}
     </div>
