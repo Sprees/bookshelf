@@ -42,26 +42,29 @@ const App = () => {
   return (
     <div>
       <Logo height="80" width="80" />
-      <button onClick={() => setOpenModal('login')}>Login</button>
-      <button onClick={() => setOpenModal('register')}>Register</button>
+      <h1>Bookshelf</h1>
+      <div>
+        <button onClick={() => setOpenModal('login')}>Login</button>
+      </div>
+      <div>
+        <button onClick={() => setOpenModal('register')}>Register</button>
+      </div>
 
-      {openModal === 'login' && (
-        <Dialog aria-label="Login Form">
-          <LoginForm onSubmit={handleSubmit} buttonText="Login" />
-          <div>
-            <button onClick={() => setOpenModal('none')}>Close</button>
-          </div>
-        </Dialog>
-      )}
+      <Dialog aria-label="Login Form" isOpen={openModal === 'login'}>
+        <div>
+          <button onClick={() => setOpenModal('none')}>Close</button>
+        </div>
+        <h3>Login</h3>
+        <LoginForm onSubmit={handleSubmit} buttonText="Login" />
+      </Dialog>
 
-      {openModal === 'register' && (
-        <Dialog aria-label="Registeration Form">
-          <LoginForm onSubmit={handleSubmit} buttonText="Login" />
-          <div>
-            <button onClick={() => setOpenModal('none')}>Close</button>
-          </div>
-        </Dialog>
-      )}
+      <Dialog aria-label="Registeration Form" isOpen={openModal === 'register'}>
+        <div>
+          <button onClick={() => setOpenModal('none')}>Close</button>
+        </div>
+        <h3>Register</h3>
+        <LoginForm onSubmit={handleSubmit} buttonText="Register" />
+      </Dialog>
     </div>
   )
 }
